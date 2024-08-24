@@ -1,0 +1,63 @@
+<div class="flex h-screen">
+    <!-- Aside -->
+    <aside [class.w-64]="!isAsideCollapsed" [class.w-20]="isAsideCollapsed" class="fixed inset-y-0 left-0 bg-gray-800 text-white transition-all duration-300 ease-in-out z-10 h-screen">
+      <div class="flex flex-col items-center justify-center h-20 relative">
+        <h1 *ngIf="!isAsideCollapsed" class="text-2xl font-bold">Mi App</h1>
+        <h1 *ngIf="isAsideCollapsed" class="text-xl font-bold">M</h1> <!-- Letra o ícono pequeño -->
+        
+        <!-- Botón para colapsar/expandir el aside -->
+        <button (click)="toggleAside()" class="absolute right-0 bg-blue-500 text-white p-1 rounded-md flex items-center justify-center w-8 h-8 transform translate-x-1/2">
+          <span *ngIf="!isAsideCollapsed" class="text-sm">&#9664;</span> <!-- Flecha izquierda -->
+          <span *ngIf="isAsideCollapsed" class="text-sm">&#9654;</span> <!-- Flecha derecha -->
+        </button>
+      </div>
+      <div class="flex flex-col items-center justify-center h-20 relative">
+        {{contadorNros}}
+        <div>
+          <button (click)="incrementar()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Incrementar</button>
+          <button (click)="decrementar()" class="bg-red-500 text-white px-4 py-2 rounded-md">Decrementar</button>
+        </div>
+      </div>
+      
+      <nav class="flex-1 px-4 py-2 overflow-y-auto">
+        <ul>
+          <li class="mb-2">
+            <div class="flex items-center cursor-pointer" (click)="toggleSubMenu('home')">
+              <i class="fas fa-home"></i> <!-- Ícono del menú -->
+              <span *ngIf="!isAsideCollapsed" class="ml-4">Inicio</span>
+              <i *ngIf="!isAsideCollapsed" class="fas" [ngClass]="{'fa-chevron-down': !isSubMenuOpen['home'], 'fa-chevron-up': isSubMenuOpen['home']}"></i>
+            </div>
+            <ul *ngIf="isSubMenuOpen['home']" class="pl-8 mt-1">
+              <li class="mb-1 cursor-pointer"><i class="fas fa-angle-right mr-2"></i>Submenu 1</li>
+              <li class="mb-1 cursor-pointer"><i class="fas fa-angle-right mr-2"></i>Submenu 2</li>
+            </ul>
+          </li>
+          <li class="mb-2">
+            <div class="flex items-center cursor-pointer" (click)="toggleSubMenu('orders')">
+              <i class="fas fa-box"></i> <!-- Ícono del menú -->
+              <span *ngIf="!isAsideCollapsed" class="ml-4">Pedidos</span>
+              <i *ngIf="!isAsideCollapsed" class="fas" [ngClass]="{'fa-chevron-down': !isSubMenuOpen['orders'], 'fa-chevron-up': isSubMenuOpen['orders']}"></i>
+            </div>
+            <ul *ngIf="isSubMenuOpen['orders']" class="pl-8 mt-1">
+              <li class="mb-1 cursor-pointer"><i class="fas fa-angle-right mr-2"></i>Submenu 1</li>
+              <li class="mb-1 cursor-pointer"><i class="fas fa-angle-right mr-2"></i>Submenu 2</li>
+            </ul>
+          </li>
+          <li class="mb-2 flex items-center cursor-pointer">
+            <i class="fas fa-tag"></i> <!-- Ícono del menú -->
+            <span *ngIf="!isAsideCollapsed" class="ml-4">Productos</span>
+          </li>
+          <li class="mb-2 flex items-center cursor-pointer">
+            <i class="fas fa-users"></i> <!-- Ícono del menú -->
+            <span *ngIf="!isAsideCollapsed" class="ml-4">Clientes</span>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <!-- Contenido principal -->
+    <div [class.ml-64]="!isAsideCollapsed" [class.ml-20]="isAsideCollapsed" class="flex-1 p-4 overflow-y-auto transition-all duration-300">
+      <app-principal></app-principal>
+    </div>
+  </div>
+  
