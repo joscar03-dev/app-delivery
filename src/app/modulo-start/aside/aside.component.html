@@ -7,11 +7,11 @@
         
         <!-- Botón para colapsar/expandir el aside -->
         <button (click)="toggleAside()" class="absolute right-0 bg-blue-500 text-white p-1 rounded-md flex items-center justify-center w-8 h-8 transform translate-x-1/2">
-          <span *ngIf="!isAsideCollapsed" class="text-sm">&#9664;</span> <!-- Flecha izquierda -->
+          <span *ngIf="!isAsideCollapsed" class="text-sm"  >&#9664;</span> <!-- Flecha izquierda -->
           <span *ngIf="isAsideCollapsed" class="text-sm">&#9654;</span> <!-- Flecha derecha -->
         </button>
       </div>
-      <div class="flex flex-col items-center justify-center h-20 relative">
+      <div class="flex flex-col items-center justify-center h-20 relative" appCambiarfondo>
         {{contadorNros}}
         <div>
           <button (click)="incrementar()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Incrementar</button>
@@ -43,10 +43,13 @@
               <li class="mb-1 cursor-pointer"><i class="fas fa-angle-right mr-2"></i>Submenu 2</li>
             </ul>
           </li>
-          <li class="mb-2 flex items-center cursor-pointer">
+          <a class="mb-2 flex items-center cursor-pointer" [routerLink]="['/lista-pedidos']">
             <i class="fas fa-tag"></i> <!-- Ícono del menú -->
             <span *ngIf="!isAsideCollapsed" class="ml-4">Productos</span>
-          </li>
+          </a>
+          
+          
+          
           <li class="mb-2 flex items-center cursor-pointer">
             <i class="fas fa-users"></i> <!-- Ícono del menú -->
             <span *ngIf="!isAsideCollapsed" class="ml-4">Clientes</span>

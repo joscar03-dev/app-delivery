@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AsideComponent } from './aside/aside.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { PedidosModule } from "../pedidos/pedidos.module";
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { PedidosModule } from "../pedidos/pedidos.module";
   ],
   imports: [
     CommonModule,
-    PedidosModule
+    PedidosModule,
+    RouterModule,
 ], 
   exports: [
     AsideComponent,
